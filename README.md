@@ -1,0 +1,1 @@
+# CollSearch-nuxtjs
