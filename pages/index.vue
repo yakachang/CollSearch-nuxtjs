@@ -7,7 +7,7 @@
       <v-col>
         <v-text-field
           v-model="query"
-          placeholder="Linggle Search"
+          placeholder="Collocation Search"
           append-icon="mdi-help"
           class="mt-3"
           rounded
