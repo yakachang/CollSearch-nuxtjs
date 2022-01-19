@@ -1,5 +1,13 @@
 <template>
-  <v-card color='#3a405a' class="mt-3">
+  <v-app :style="{background: $vuetify.theme.themes.light.background}">
+    <v-main>
+      <v-container style="height: 100%">
+        <nuxt />
+      </v-container>
+    </v-main>
+  </v-app>
+  <!--
+  <v-card color='#3a405a' height="100vh">
     <v-main>
       <v-container>
         <nuxt />
@@ -9,6 +17,7 @@
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-card>
+  -->
 </template>
 
 <script>
@@ -16,7 +25,7 @@ export default {
   name: 'DefaultLayout',
   data() {
     return {
-      fixed: false,
+      
     }
   },
 }
