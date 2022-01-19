@@ -36,12 +36,20 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: '/api/',
+  },
+
+  proxy: {
+    '/api/': {
+      changeOrigin: false,
+      target: process.env.CMS_API_URL || 'http://jedi.nlplab.cc:7089'
+    },
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
