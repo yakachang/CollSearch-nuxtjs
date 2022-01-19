@@ -37,8 +37,8 @@ export default {
     async search(query) {
       // console.log(query)
       // let result = this.$axios.$get('/ngram/', {query: query})
-      let result = this.$axios.$get(
-        `/`
+      let result = await this.$axios.$post(
+        `/search/${query}`, {query: query}
       ).catch(error => {
         console.log(error)
       })
