@@ -17,11 +17,17 @@
         ></v-text-field>
       </v-col>
     </v-row>
+    <div v-show="isSearching">
+      <v-progress-linear
+        indeterminate
+        color="cyan"
+      ></v-progress-linear>
+    </div>
     <v-row
       align="center"
       justify="center"
     >
-      <h2 v-show="!isDataExisted" style="color: white">
+      <h2 v-show="showNoResult" style="color: white">
         - No Result -
       </h2>
     </v-row>
@@ -92,15 +98,15 @@ export default {
     console.log(params)
     let query = params.id
 
-    let result_list = await $axios.$post(
-      `https://m.linggle.com/api/search/${query}`, {query: query}
-    ).catch(error => {
-      console.log(error)
-    })
+    // let result_list = await $axios.$post(
+    //   `https://m.linggle.com/api/search/${query}`, {query: query}
+    // ).catch(error => {
+    //   console.log(error)
+    // })
     
     return {
       query: params.id,
-      result_list
+      // result_list
     }
   },
   data() {
@@ -108,9 +114,10 @@ export default {
       query: "",
       res_list: [],
       example_list: [],
-      // result_list: [],
+      result_list: [],
       expanded: [],
       singleExpand: true,
+      isSearching: true,
       Headers: [
         {
           text: 'Sentence Pattern',
@@ -140,16 +147,33 @@ export default {
       } catch {
         return false
       }
+    },
+    showNoResult() {
+      if (!this.isDataExisted && !this.isSearching){
+        return true
+      } else {
+        return false
+      }
     }
   },
   methods: {
     async search() {
-      this.$router.push({ path: `${this.query}` })
+      this.isSearching = true
+      this.$router.push({ path: encodeURIComponent(this.query) })
     },
     linggleHelp() {
       window.open('https://linggle.com/help/')
     }
   },
+  async fetch() {
+    console.log("Hello World!!!")
+    this.result_list = await this.$axios.$post(
+      `https://m.linggle.com/api/search/${this.query}`, {query: this.query}
+    ).catch(error => {
+      console.log(error)
+    })
+    this.isSearching = false
+  }
 }
 </script>
 
