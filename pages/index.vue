@@ -18,6 +18,12 @@
         ></v-text-field>
       </v-col>
     </v-row>
+    <div v-show="isLoading">
+      <v-progress-linear
+        indeterminate
+        color="cyan"
+      ></v-progress-linear>
+    </div>
     <v-card
       v-show="result_list.length !== 0"
       class="mx-auto"
@@ -60,6 +66,7 @@ export default {
       res_list: [],
       example_list: [],
       result_list: [],
+      isLoading: false,
     }
   },
   head() {
@@ -69,7 +76,8 @@ export default {
   },
   methods: {
     pageChange() {
-      this.$router.push({ path: `${this.query}` })
+      this.isLoading = true
+      this.$router.push({ path: encodeURI(this.query) })
     },
     // async search(query) {
     //   let result = await this.$axios.$post(
