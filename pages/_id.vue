@@ -18,7 +18,7 @@
       </v-col>
     </v-row>
     <v-card
-      v-show="result_list.length !== 0"
+      v-show="isDataExisted"
       class="mx-auto"
       width="100vw"
     >
@@ -53,7 +53,6 @@
 <script>
 export default {
   name: 'SearchPage',
-  layout: 'searchLayout',
   async asyncData ({ params, $axios }) {
     // called every time before loading the component
     console.log(params)
@@ -64,8 +63,7 @@ export default {
     ).catch(error => {
       console.log(error)
     })
-    console.log("Result_list: ", typeof result_list)
-
+    
     return {
       query: params.id,
       result_list
@@ -82,6 +80,19 @@ export default {
   head() {
     return {
       title: 'Collocation Search',
+    }
+  },
+  computed: {
+    isDataExisted() {
+      try {
+        if (this.result_list.length !== 0){
+          return true
+        } else {
+          return false
+        }
+      } catch {
+        return false
+      }
     }
   },
   methods: {
