@@ -33,7 +33,7 @@
       :expanded.sync="expanded"
       item-key="pattern"
       show-expand
-      class="elevation-1"
+      class="elevation-1 white--text"
     >
       <template v-slot:expanded-item="{ headers, item }">
         <td :colspan="headers.length">
@@ -41,7 +41,7 @@
           <ul
             v-for="(example, idx) in item.example.slice(0,10)"
             :key="idx"
-            style="margin:10px 30px; padding:0; float:left;"
+            style="margin:10px 30px; padding:0; float:left; color: white"
           >
             <li>{{ example[0] }}</li>
           </ul>
@@ -117,9 +117,10 @@ export default {
           align: 'start',
           sortable: false,
           value: 'pattern',
+          class: "#3a405a orange--text",
         },
-        { text: 'Count', value: 'count' },
-        { text: '%', value: 'percentage' },
+        { text: 'Count', value: 'count', class: "#3a405a orange--text" },
+        { text: '%', value: 'percentage', class: "#3a405a orange--text" },
       ],
     }
   },
@@ -151,3 +152,18 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+  .theme--light.v-data-table > .v-data-table__wrapper > table > thead > tr > th {
+    background: #3a405a;
+  }
+  .elevation-1 tr th:first-of-type, td:first-of-type {
+    background-color: #3a405a;
+  }
+  .v-data-table__mobile-row {
+    background-color: #474e6e;
+  }
+  .v-data-table {
+    background-color: #3a405a;
+  }
+</style>
