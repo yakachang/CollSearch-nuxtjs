@@ -68,8 +68,6 @@ export default {
   },
   methods: {
     async search(query) {
-      // console.log(query)
-      // let result = this.$axios.$get('/ngram/', {query: query})
       let result = await this.$axios.$post(
         `/search/${query}`, {query: query}
       ).catch(error => {
@@ -77,8 +75,6 @@ export default {
       })
 
       this.result_list = result.slice(0, 10)
-      console.log('result: ', result)
-      // return result
     },
     linggleHelp() {
       window.open('https://linggle.com/help/')
