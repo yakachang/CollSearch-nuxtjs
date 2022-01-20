@@ -16,6 +16,7 @@
       />
       <v-spacer />
       <div class="flex-1-1-auto d-flex align-center justify-end">
+        <!--
         <v-btn
           v-for="(tab, i) in tabs"
           :to="tab.to"
@@ -26,6 +27,7 @@
         >
           {{ tab.title }}
         </v-btn>
+        -->
         <!--
         <v-divider
           class="mx-4"

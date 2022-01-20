@@ -1,6 +1,11 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  // https://nuxtjs.org/deployments/github-pages/#command-line-deployment
+  target: 'static',
+  router: {
+    base: '/CollSearch/'
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - CollSearch-nuxtjs',
