@@ -93,7 +93,7 @@ export default {
     let query = params.id
 
     let result_list = await $axios.$post(
-      `/search/${query}`, {query: query}
+      `http://jedi.nlplab.cc:7089/api/search/${query}`, {query: query}
     ).catch(error => {
       console.log(error)
     })
