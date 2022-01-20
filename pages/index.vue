@@ -12,8 +12,9 @@
           class="mt-3"
           rounded
           solo
-          @keydown.enter="search(query)"
+          @keydown.enter="pageChange()"
           @click:append="linggleHelp"
+          :to="`${query}`"
         ></v-text-field>
       </v-col>
     </v-row>
@@ -67,15 +68,18 @@ export default {
     }
   },
   methods: {
-    async search(query) {
-      let result = await this.$axios.$post(
-        `/search/${query}`, {query: query}
-      ).catch(error => {
-        console.log(error)
-      })
-
-      this.result_list = result.slice(0, 10)
+    pageChange() {
+      this.$router.push({ path: `${this.query}` })
     },
+    // async search(query) {
+    //   let result = await this.$axios.$post(
+    //     `/search/${query}`, {query: query}
+    //   ).catch(error => {
+    //     console.log(error)
+    //   })
+
+    //   this.result_list = result.slice(0, 10)
+    // },
     linggleHelp() {
       window.open('https://linggle.com/help/')
     }
