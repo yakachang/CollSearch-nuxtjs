@@ -167,3 +167,11 @@ export default {
     background-color: #3a405a;
   }
 </style>
+
+<style lang="scss">  
+  tbody {
+     tr:hover {
+        background-color: inherit !important;
+     }
+  }
+</style>
