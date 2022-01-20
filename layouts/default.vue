@@ -12,6 +12,7 @@
         max-height="100"
         max-width="100"
         contain
+        @click="BackToHome()"
       />
       <v-spacer />
       <div class="flex-1-1-auto d-flex align-center justify-end">
@@ -92,5 +93,10 @@ export default {
       ],
     }
   },
+  methods: {
+    BackToHome() {
+      this.$router.push({ path: '/' })
+    }
+  }
 }
 </script>
