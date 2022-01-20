@@ -17,6 +17,14 @@
         ></v-text-field>
       </v-col>
     </v-row>
+    <v-row
+      align="center"
+      justify="center"
+    >
+      <h2 v-show="!isDataExisted" style="color: white">
+        - No Result -
+      </h2>
+    </v-row>
     <v-card
       v-show="isDataExisted"
       class="mx-auto"
