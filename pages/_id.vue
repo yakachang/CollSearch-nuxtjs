@@ -25,6 +25,31 @@
         - No Result -
       </h2>
     </v-row>
+    <v-data-table
+      v-show="isDataExisted"
+      :headers="Headers"
+      :items="result_list"
+      :single-expand="singleExpand"
+      :expanded.sync="expanded"
+      item-key="pattern"
+      show-expand
+      class="elevation-1"
+    >
+      <template v-slot:expanded-item="{ headers, item }">
+        <td :colspan="headers.length">
+          <v-spacer />
+          <ul
+            v-for="(example, idx) in item.example.slice(0,10)"
+            :key="idx"
+            style="margin:10px 30px; padding:0; float:left;"
+          >
+            <li>{{ example[0] }}</li>
+          </ul>
+          <v-spacer />
+        </td>
+      </template>
+    </v-data-table>
+    <!--
     <v-card
       v-show="isDataExisted"
       class="mx-auto"
@@ -55,6 +80,7 @@
         </v-list-group>
       </v-list>
     </v-card>
+    -->
   </v-container>
 </template>
 
@@ -83,6 +109,18 @@ export default {
       res_list: [],
       example_list: [],
       // result_list: [],
+      expanded: [],
+      singleExpand: true,
+      Headers: [
+        {
+          text: 'Sentence Pattern',
+          align: 'start',
+          sortable: false,
+          value: 'pattern',
+        },
+        { text: 'Count', value: 'count' },
+        { text: '%', value: 'percentage' },
+      ],
     }
   },
   head() {
