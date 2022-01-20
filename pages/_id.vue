@@ -52,7 +52,8 @@
 
 <script>
 export default {
-  name: 'IndexPage',
+  name: 'SearchPage',
+  layout: 'searchLayout',
   async asyncData ({ params, $axios }) {
     // called every time before loading the component
     console.log(params)
