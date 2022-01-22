@@ -137,6 +137,9 @@ export default {
     }
   },
   computed: {
+    lang() {
+      return this.$store.getters['lang/getLang']
+    },
     isDataExisted() {
       try {
         if (this.result_list.length !== 0){
@@ -166,9 +169,13 @@ export default {
     }
   },
   async fetch() {
-    console.log("Hello World!!!")
+    console.log("Lang: ", this.lang)
+    if (this.query.includes("/")) {
+      this.query = this.query.replaceAll("/", "#")
+    }
+    console.log(this.query)
     this.result_list = await this.$axios.$post(
-      `https://m.linggle.com/api/search/${this.query}`, {query: this.query}
+      `https://m.linggle.com/api/search/${this.lang}/${this.query}`, {query: this.query}
     ).catch(error => {
       console.log(error)
     })

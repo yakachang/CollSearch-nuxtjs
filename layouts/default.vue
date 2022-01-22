@@ -28,7 +28,7 @@
           {{ tab.title }}
         </v-btn>
         -->
-        <!--
+        
         <v-divider
           class="mx-4"
           vertical
@@ -36,23 +36,23 @@
         <v-menu offset-y open-on-hover transition="slide-y-transition">
           <template v-slot:activator="{ on, attrs }">
             <v-btn class="text--secondary px-2" text v-bind="attrs" v-on="on">
-              <v-icon>mdi-translate</v-icon>
-              <v-icon small>mdi-chevron-down</v-icon>
+              <v-icon color="white">mdi-translate</v-icon>
+              <v-icon small color="white">mdi-chevron-down</v-icon>
             </v-btn>
           </template>
           <v-list dense>
             <v-list-item-group v-model="selectedLang">
               <v-list-item
-                v-for="lang in $i18n.locales"
-                :key="lang.code"
-                :value="lang.code"
+                v-for="mode in modes"
+                :key="mode.code"
+                :value="mode.code"
               >
-                <v-list-item-title v-text="lang.name"></v-list-item-title>
+                <v-list-item-title v-text="mode.name"></v-list-item-title>
               </v-list-item>
             </v-list-item-group>
           </v-list>
         </v-menu>
-        -->
+
       </div>
     </v-app-bar>
     <v-main>
@@ -93,7 +93,27 @@ export default {
           menuItems: [],
         },
       ],
+      selectedLang: this.$store.getters['lang/getLang'],
+      modes: [
+        {
+          'name': 'English',
+          'code': 'en',
+        },
+        {
+          'name': 'Academic English',
+          'code': 'aca_en',
+        },
+        {
+          'name': 'Chinese',
+          'code': 'ch',
+        },
+      ]
     }
+  },
+  watch: {
+    selectedLang() {
+      this.$store.commit('lang/setLang', this.selectedLang)
+    },
   },
   methods: {
     BackToHome() {
