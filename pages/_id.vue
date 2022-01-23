@@ -47,9 +47,9 @@
           <ul
             v-for="(example, idx) in item.example.slice(0,10)"
             :key="idx"
-            style="margin:10px 30px; padding:0; float:left; color: white"
+            style="margin:10px 70px; padding:0; float:left; color: white"
           >
-            <li>{{ example[0] }}</li>
+            <li style="width: 80vw">{{ example[0] }}</li>
           </ul>
           <v-spacer />
         </td>
