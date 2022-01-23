@@ -97,7 +97,10 @@ export default {
     // called every time before loading the component
     console.log(params)
     let query = params.id
-
+    if (query.includes("^")) {
+      query = query.replaceAll("^", "/")
+    }
+    
     // let result_list = await $axios.$post(
     //   `https://m.linggle.com/api/search/${query}`, {query: query}
     // ).catch(error => {
@@ -105,13 +108,14 @@ export default {
     // })
     
     return {
-      query: params.id,
+      query,
       // result_list
     }
   },
   data() {
     return {
       query: "",
+      query_new: "",
       res_list: [],
       example_list: [],
       result_list: [],
@@ -162,7 +166,15 @@ export default {
   methods: {
     async search() {
       this.isSearching = true
-      this.$router.push({ path: encodeURIComponent(this.query) })
+      this.isLoading = true
+      console.log("Lang: ", this.lang)
+      if (this.query.includes("/")) {
+        this.query_new = this.query.replaceAll("/", "^")
+      } else {
+        this.query_new = this.query
+      }
+      console.log(this.query_new)
+      this.$router.push({ path: this.query_new })
     },
     linggleHelp() {
       window.open('https://linggle.com/help/')
@@ -171,11 +183,13 @@ export default {
   async fetch() {
     console.log("Lang: ", this.lang)
     if (this.query.includes("/")) {
-      this.query = this.query.replaceAll("/", "#")
+      this.query_new = this.query.replaceAll("/", "^")
+    } else {
+      this.query_new = this.query
     }
     console.log(this.query)
     this.result_list = await this.$axios.$post(
-      `https://m.linggle.com/api/search/${this.lang}/${this.query}`, {query: this.query}
+      `https://m.linggle.com/api/search/${this.lang}/${this.query_new}`, {query: this.query_new}
     ).catch(error => {
       console.log(error)
     })

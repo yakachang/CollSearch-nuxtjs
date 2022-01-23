@@ -63,6 +63,7 @@ export default {
   data() {
     return {
       query: "",
+      query_new: "",
       res_list: [],
       example_list: [],
       result_list: [],
@@ -77,7 +78,15 @@ export default {
   methods: {
     pageChange() {
       this.isLoading = true
-      this.$router.push({ path: encodeURI(this.query) })
+      console.log("Lang: ", this.lang)
+      if (this.query.includes("/")) {
+        this.query_new = this.query.replaceAll("/", "^")
+      } else {
+        this.query_new = this.query
+      }
+      console.log("Index, query: ", this.query)
+      console.log("Index, query_new: ", this.query_new)
+      this.$router.push({ path: this.query_new })
     },
     // async search(query) {
     //   let result = await this.$axios.$post(
