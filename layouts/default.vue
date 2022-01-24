@@ -113,6 +113,7 @@ export default {
   watch: {
     selectedLang() {
       this.$store.commit('lang/setLang', this.selectedLang)
+      this.$router.push({ path: '/' })
     },
   },
   methods: {
