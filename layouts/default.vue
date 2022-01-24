@@ -7,7 +7,7 @@
       flat
     >
       <v-img
-        :src="require('~/assets/linggle-logo-dark.png')"
+        :src="require('~/assets/collsearch-logo-dark.png')"
         class="mr-2"
         max-height="100"
         max-width="100"
