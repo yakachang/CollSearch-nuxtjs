@@ -124,7 +124,7 @@ export default {
       isSearching: true,
       Headers: [
         {
-          text: 'Sentence Pattern',
+          text: 'Phrase',
           align: 'start',
           sortable: false,
           value: 'pattern',
