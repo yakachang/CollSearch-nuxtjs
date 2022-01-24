@@ -142,7 +142,7 @@ export default {
   },
   computed: {
     lang() {
-      return this.$store.getters['lang/getLang']
+      return this.$store.getters['lang/getLang'] || 'en'
     },
     isDataExisted() {
       try {
@@ -168,6 +168,7 @@ export default {
       this.isSearching = true
       this.isLoading = true
       console.log("Lang: ", this.lang)
+      this.result_list = []
       if (this.query.includes("/")) {
         this.query_new = this.query.replaceAll("/", "^")
       } else {
