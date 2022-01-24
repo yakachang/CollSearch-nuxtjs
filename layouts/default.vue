@@ -10,7 +10,7 @@
         :src="require('~/assets/collsearch-logo-dark.png')"
         class="mr-2"
         max-height="100"
-        max-width="100"
+        max-width="150"
         contain
         @click="BackToHome()"
       />
